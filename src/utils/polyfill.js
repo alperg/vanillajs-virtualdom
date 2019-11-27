@@ -1,46 +1,7 @@
 const dom = require('virtual-dom/h');
-const diff = require('virtual-dom/diff');
-const patch = require('virtual-dom/patch');
-const createElement = require('virtual-dom/create-element');
-
-module.exports.Component = class Component {
-
-  constructor(root) {
-    this.root = root;
-    this.tree = h('div', null);
-    this.rootNode = createElement(this.tree);
-    this.root.appendChild(this.rootNode);
-    this.state = this.getInitialState();
-    this.update();
-    this.componentDidMount();
-  }
-
-  componentDidMount() {}
-
-  setState(state) {
-    this.state = Object.assign(this.state || {}, state);
-    this.update();
-  }
-
-  update() {
-    const newTree = this.render();
-    const patches = diff(this.tree, newTree);
-    this.rootNode = patch(this.rootNode, patches);
-    this.tree = newTree;
-  }
-
-  getInitialState() {
-    return {};
-  }
-
-  render() {
-    return null;
-  }
-
-};
 
 // Bridge function between what babel expects and virtual-dom needs
-const h = (...args) => {
+const polyfill = (...args) => {
   const name = args[0];
   // In a real framework we would support nesting custom components
   if (typeof name !== 'string') {
@@ -66,4 +27,4 @@ const h = (...args) => {
   }
 };
 
-module.exports.h = h;
+module.exports.polyfill = polyfill;

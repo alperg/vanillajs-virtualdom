@@ -2,10 +2,10 @@
   "name": "vanillajs-virtualdom",
   "version": "1.0.0",
   "description": "Vanilla JavaScript approach to the virtual DOM implementation",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "watch": "watchify index.js -o dist/bundle.js -t babelify -v",
-    "build": "browserify index.js -o dist/bundle.js -t babelify"
+    "watch": "watchify src/index.js -o dist/bundle.js -t babelify -v",
+    "build": "browserify src/index.js -o dist/bundle.js -t babelify"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
       [
         "transform-react-jsx",
         {
-          "pragma": "h"
+          "pragma": "polyfill"
         }
       ]
     ]

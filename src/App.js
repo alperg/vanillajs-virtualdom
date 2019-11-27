@@ -1,6 +1,7 @@
-const { Component, h } = require('./components/BaseComponent');
+const { Component } = require('./components/BaseComponent');
+const { polyfill } = require('./utils/polyfill.js');
 
-class CustomerList extends Component {
+module.exports =  class CustomerList extends Component {
 
   getInitialState() {
     return {
@@ -11,6 +12,7 @@ class CustomerList extends Component {
   componentDidMount() {
     this.input = this.root.querySelector('input');
 
+    // fetch data
     this.fetchCustomers();
 
     // event handlers
@@ -54,8 +56,8 @@ class CustomerList extends Component {
           return {
             id: cust.id,
             name: `${cust.firstName} ${cust.lastName}`
-          }
-        })
+          };
+        });
         this.setState({ customers });
       });
   }
@@ -68,13 +70,9 @@ class CustomerList extends Component {
   }
 
   removeCustomer(id) {
-    console.log(id);
-    console.log(this.state.customers);
     this.setState({
       customers: this.state.customers.filter(item => item.id.toString() !== id)
     });
   }
 
-}
-
-new CustomerList(document.getElementById("root"));
+};
