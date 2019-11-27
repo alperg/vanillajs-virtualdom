@@ -1,0 +1,41 @@
+{
+  "name": "vanillajs-virtualdom",
+  "version": "1.0.0",
+  "description": "Vanilla JavaScript approach to the virtual DOM implementation",
+  "main": "index.js",
+  "scripts": {
+    "watch": "watchify index.js -o dist/bundle.js -t babelify -v",
+    "build": "browserify index.js -o dist/bundle.js -t babelify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alperg/vanillajs-virtualdom.git"
+  },
+  "keywords": [],
+  "author": "Alper Gokcehan <mail@alperg.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alperg/vanillajs-virtualdom/issues"
+  },
+  "homepage": "https://github.com/alperg/vanillajs-virtualdom#readme",
+  "babel": {
+    "plugins": [
+      [
+        "transform-react-jsx",
+        {
+          "pragma": "h"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-plugin-transform-react-jsx": "6.24.1",
+    "babelify": "8.0.0",
+    "browserify": "16.1.1",
+    "watchify": "3.11.0"
+  },
+  "dependencies": {
+    "virtual-dom": "2.1.1"
+  }
+}
