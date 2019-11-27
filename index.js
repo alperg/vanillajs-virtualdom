@@ -22,8 +22,8 @@ class CustomerList extends Component {
     });
 
     this.root.addEventListener('click', e => {
-      const id = e.target.getAttribute('data-delete-id');
-      if (!id) return; // user clicked something else
+      const id = e.target.getAttribute('data-id');
+      if (!id) return;
       this.removeCustomer(id);
     });
   }
@@ -32,15 +32,12 @@ class CustomerList extends Component {
     return (
       <div>
         <form>
-          <input placeholder="Type a name and hit enter to add a Customer..."/>
+          <input placeholder="Add a customer..."/>
         </form>
-        {this.state.customers.length === 0 && (
-          <p class="help"></p>
-        )}
         <ul>
           {this.state.customers.map(cust => (
             <li key={cust.id}>
-              <a data-delete-id={cust.id}>delete</a>
+              <button data-id={cust.id}>🆇</button>
               <span>{cust.name}</span>
             </li>
           ))}
